@@ -17,7 +17,7 @@ Currently, portable electronic devices are becoming more and more popular. For l
 The overall flowchart of our proposed algorithm is shown as follows.
 <br>
 <p align="center">
-    <img src="./images/flowchart.png"/ width=30%> <br />
+    <img src="./images/flowchart.png"/ width=90%> <br />
 </p>
 <br>
 
