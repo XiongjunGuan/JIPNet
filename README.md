@@ -5,7 +5,7 @@
 </a> 
 
 ### 💬 This repo is the official implementation of:
-- ***T-IFS 2024***: [Joint Identity Verification and Pose Alignment for Partial Fingerprints](https://arxiv.org/abs/2405.03959) 
+- ***arXiv 2024***: [Joint Identity Verification and Pose Alignment for Partial Fingerprints](https://arxiv.org/abs/2405.03959) 
 
 [Xiongjun Guan](https://xiongjunguan.github.io/), Zhiyu Pan, Jianjiang Feng, Jie Zhou
 
