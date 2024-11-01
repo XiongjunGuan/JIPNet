@@ -1,0 +1,16 @@
+# model settings
+model_cfg:
+  model: JIPNet
+  input_size: 160
+  img_channel: 1
+  num_classes: 1
+  width: 32
+  enc_blk_nums: [2, 2, 2]
+  dw_expand: 1
+  ffn_expand: 2
+  mid_blk_nums: [4]
+  mid_blk_strides: [1]
+  mid_embed_dims: [264]
+  dec_nhead: [6, 12]
+  dec_local_num: [8, 4]
+  dec_hidden_dim: 384

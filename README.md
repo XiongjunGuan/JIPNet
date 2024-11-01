@@ -1,3 +1,13 @@
+<!--
+ * @Description: 
+ * @Author: Xiongjun Guan
+ * @Date: 2024-05-24 10:59:39
+ * @version: 0.0.1
+ * @LastEditors: Xiongjun Guan
+ * @LastEditTime: 2024-11-01 16:49:20
+ * 
+ * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
+-->
 # JIPNet
 <img alt="PyTorch" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&style=for-the-badge&logo=PyTorch&logoColor=white" />
 <a src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red" href="https://arxiv.org/abs/2405.03959"> 
@@ -29,11 +39,46 @@ The structure of **JIPNet** (the name `JIP` stands for **J**oint **I**dentity Ve
 <br>
 
 
-## News
-Code will be released after this paper is officially accepted.
+## News :bell:
+- **[Nov. 1 2024]** Code is coming.
 
 <br>
   
+## Requirements
+```shell
+einops==0.8.0
+numpy==2.1.2
+opencv_contrib_python==4.10.0.84
+opencv_python==4.8.1.78
+PyYAML==6.0.2
+timm==0.9.12
+torch==2.1.2
+tqdm==4.66.1
+
+
+```
+
+## Data preparation
+
+The file structure is as follows:
+```shell
+root_path/examples/
+├── data
+|   ├── 0_1.png
+|   ├── 0_2.png
+|   ├── ......
+├── result
+|   ├── 0.png
+|   ├── 0.txt
+```
+Input paired images, output aligned result (png), and classification probabilities/relative pose vectors (txt).
+
+## Run
+* **Inference**
+    ```shell
+    python inference.py
+    ```
+
 
 ## Citation
 If you find this repository useful, please give us stars and use the following BibTeX entry for citation.
