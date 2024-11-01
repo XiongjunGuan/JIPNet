@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2024-11-01 16:54:31
+ * @LastEditTime: 2024-11-01 16:56:03
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -75,7 +75,7 @@ root_path/examples/
 |   ├── 0.txt
 |   ├── ......
 ```
-Input paired images (*_1.png, *_2.png), output aligned results (*.png) and classification probabilities/relative pose vectors (*.txt).
+Input paired images (`ftitle_1.png, ftitle_2.png`), output aligned results (`ftitle.png`) and classification probabilities/relative pose vectors (`ftitle.txt`).
 
 ## Run
 * **Inference**
