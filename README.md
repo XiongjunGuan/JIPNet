@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2024-11-01 16:49:20
+ * @LastEditTime: 2024-11-01 16:54:31
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -38,6 +38,9 @@ The structure of **JIPNet** (the name `JIP` stands for **J**oint **I**dentity Ve
 </p>
 <br>
 
+## Notice :exclamation:
+Model weights and data will be released after this paper is officially accepted.
+
 
 ## News :bell:
 - **[Nov. 1 2024]** Code is coming.
@@ -70,8 +73,9 @@ root_path/examples/
 ├── result
 |   ├── 0.png
 |   ├── 0.txt
+|   ├── ......
 ```
-Input paired images, output aligned result (png), and classification probabilities/relative pose vectors (txt).
+Input paired images (*_1.png, *_2.png), output aligned results (*.png) and classification probabilities/relative pose vectors (*.txt).
 
 ## Run
 * **Inference**
