@@ -1,0 +1,5 @@
+1-2 matching probability:
+1.00
+
+1-2 pose alignment (cos, sin, tx, ty):
+0.96, 0.28, 29.36, 94.06, 

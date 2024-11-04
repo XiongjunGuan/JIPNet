@@ -4,7 +4,7 @@ Author: Xiongjun Guan
 Date: 2024-10-31 17:01:48
 version: 0.0.1
 LastEditors: Xiongjun Guan
-LastEditTime: 2024-11-04 11:28:21
+LastEditTime: 2024-11-04 11:28:13
 
 Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 '''
@@ -20,8 +20,12 @@ import torch
 import yaml
 from tqdm import tqdm
 
-from models.JIPNet import JIPNet
 from models.utils import AffinePatch
+from other_models.PFVNet.PFVNet_AlignNet import AlignNet
+from other_models.PFVNet.PFVNet_CompareNet import CompareNet
+from other_models.PFVNet.utils import (AffinePatch, TransformAffinePred,
+                                       load_model)
+from other_models.RidgeNet.RidgeNet import RidgeNet
 
 
 def norm_pred(align_pred, eps=1e-6):
@@ -56,8 +60,11 @@ if __name__ == "__main__":
     cuda_ids = [0]
     batch_size = 1
 
-    pth_path = "./ckpts/JIPNet/best.pth"
-    config_path = "./ckpts/JIPNet/config.yaml"
+    enh_model_path = "./ckpts/RidgeNet/best.pth"
+    align_pth_path = "./ckpts/PFVNet/alignnet.pth"
+    pth_path = "./ckpts/PFVNet/best.pth"
+    config_path = "./ckpts/PFVNet/config.yaml"
+
     with open(config_path, "r") as config:
         cfg = yaml.safe_load(config)
 
@@ -66,53 +73,69 @@ if __name__ == "__main__":
 
     data_dir = "./examples/data/"
     ftitle_lst = ["0", "1", "2", "3"]
-    save_dir = "./examples/results/JIPNet/"
+    save_dir = "./examples/results/PFVNet/"
     if not osp.exists(save_dir):
         os.makedirs(save_dir)
 
     device = torch.device("cuda:{}".format(str(cuda_ids[0])) if torch.cuda.
                           is_available() else "cpu")
 
-    model = JIPNet(input_size=patch_size,
-                   img_channel=cfg["model_cfg"]["img_channel"],
-                   num_classes=cfg["model_cfg"]["num_classes"],
-                   width=cfg["model_cfg"]["width"],
-                   enc_blk_nums=cfg["model_cfg"]["enc_blk_nums"],
-                   dw_expand=cfg["model_cfg"]["dw_expand"],
-                   ffn_expand=cfg["model_cfg"]["ffn_expand"],
-                   mid_blk_nums=cfg["model_cfg"]["mid_blk_nums"],
-                   mid_blk_strides=cfg["model_cfg"]["mid_blk_strides"],
-                   mid_embed_dims=cfg["model_cfg"]["mid_embed_dims"],
-                   dec_hidden_dim=cfg["model_cfg"]["dec_hidden_dim"],
-                   dec_nhead=cfg["model_cfg"]["dec_nhead"],
-                   dec_local_num=cfg["model_cfg"]["dec_local_num"])
+    align_model = AlignNet()
+    compare_model = CompareNet(p1=cfg["model_cfg"]["p1"],
+                               p2=cfg["model_cfg"]["p2"],
+                               pw1=cfg["model_cfg"]["pw1"],
+                               pw2=cfg["model_cfg"]["pw2"])
+    enh_model = RidgeNet()
 
-    model.load_state_dict(
-        torch.load(pth_path, map_location=f'cuda:{cuda_ids[0]}'))
+    align_model.load_state_dict(torch.load(align_pth_path))
+    compare_model.load_state_dict(torch.load(pth_path))
+    load_model(enh_model, enh_model_path)
 
-    model = torch.nn.DataParallel(
-        model,
+    align_model = torch.nn.DataParallel(
+        align_model,
+        device_ids=cuda_ids,
+        output_device=cuda_ids[0],
+    ).to(device)
+    compare_model = torch.nn.DataParallel(
+        compare_model,
+        device_ids=cuda_ids,
+        output_device=cuda_ids[0],
+    ).to(device)
+    enh_model = torch.nn.DataParallel(
+        enh_model,
         device_ids=cuda_ids,
         output_device=cuda_ids[0],
     ).to(device)
 
     affine_func = AffinePatch()
+    transform_affine_func = TransformAffinePred()
 
-    model.eval()
+    align_model.eval()
+    compare_model.eval()
+    enh_model.eval()
     with torch.no_grad():
         for ftitle in tqdm(ftitle_lst):
             img1 = cv2.imread(osp.join(data_dir, f"{ftitle}_1.png"), 0)
             img2 = cv2.imread(osp.join(data_dir, f"{ftitle}_2.png"), 0)
 
-            input1 = ((255.0 - img1) / 255.0)[np.newaxis, np.newaxis, :, :]
-            input2 = ((255.0 - img2) / 255.0)[np.newaxis, np.newaxis, :, :]
+            input1 = (img1 / 255.0)[np.newaxis, np.newaxis, :, :]
+            input2 = (img2 / 255.0)[np.newaxis, np.newaxis, :, :]
 
             input1 = torch.tensor(input1).float().to(device)
             input2 = torch.tensor(input2).float().to(device)
 
-            cla_pred, align_pred = model([input1, input2])
+            # --- enh
+            [enh1, enh2] = enh_model([input1, input2])
 
-            y = cla_pred.squeeze().cpu().numpy()
+            # --- align
+            align_pred = align_model([enh1, enh2])
+            enh2 = affine_func(enh2, transform_affine_func(align_pred))
+
+            # --- compare
+            inputs = torch.cat((enh1, enh2), dim=1).clone().detach()
+            y, y1, y2, y3 = compare_model(inputs)
+
+            y = y.squeeze().cpu().numpy()
             align_pred = align_pred.squeeze().cpu().numpy()
 
             align_pred = norm_pred(align_pred[None, :])

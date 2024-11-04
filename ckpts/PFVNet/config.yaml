@@ -1,0 +1,8 @@
+# model settings
+model_cfg:
+  model: PFVNet
+  input_size: 160
+  p1: 3
+  p2: 2
+  pw1: 64
+  pw2: 96

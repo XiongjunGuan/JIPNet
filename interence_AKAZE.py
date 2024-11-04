@@ -4,7 +4,7 @@ Author: Xiongjun Guan
 Date: 2024-10-31 17:01:48
 version: 0.0.1
 LastEditors: Xiongjun Guan
-LastEditTime: 2024-11-04 11:28:21
+LastEditTime: 2024-11-04 12:00:19
 
 Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 '''
@@ -20,8 +20,14 @@ import torch
 import yaml
 from tqdm import tqdm
 
-from models.JIPNet import JIPNet
 from models.utils import AffinePatch
+from other_models.AKAZE.match import matchDes
+
+
+def localEqualHist(img):
+    clahe = cv2.createCLAHE(clipLimit=5, tileGridSize=(32, 32))
+    dst = clahe.apply(img)
+    return dst
 
 
 def norm_pred(align_pred, eps=1e-6):
@@ -53,67 +59,35 @@ def set_seed(seed=7):
 
 if __name__ == "__main__":
     set_seed(7)
-    cuda_ids = [0]
     batch_size = 1
-
-    pth_path = "./ckpts/JIPNet/best.pth"
-    config_path = "./ckpts/JIPNet/config.yaml"
-    with open(config_path, "r") as config:
-        cfg = yaml.safe_load(config)
 
     patch_size = 160
     pad_width = 100  # for visualization
 
     data_dir = "./examples/data/"
     ftitle_lst = ["0", "1", "2", "3"]
-    save_dir = "./examples/results/JIPNet/"
+    save_dir = "./examples/results/AKAZE/"
     if not osp.exists(save_dir):
         os.makedirs(save_dir)
 
-    device = torch.device("cuda:{}".format(str(cuda_ids[0])) if torch.cuda.
-                          is_available() else "cpu")
-
-    model = JIPNet(input_size=patch_size,
-                   img_channel=cfg["model_cfg"]["img_channel"],
-                   num_classes=cfg["model_cfg"]["num_classes"],
-                   width=cfg["model_cfg"]["width"],
-                   enc_blk_nums=cfg["model_cfg"]["enc_blk_nums"],
-                   dw_expand=cfg["model_cfg"]["dw_expand"],
-                   ffn_expand=cfg["model_cfg"]["ffn_expand"],
-                   mid_blk_nums=cfg["model_cfg"]["mid_blk_nums"],
-                   mid_blk_strides=cfg["model_cfg"]["mid_blk_strides"],
-                   mid_embed_dims=cfg["model_cfg"]["mid_embed_dims"],
-                   dec_hidden_dim=cfg["model_cfg"]["dec_hidden_dim"],
-                   dec_nhead=cfg["model_cfg"]["dec_nhead"],
-                   dec_local_num=cfg["model_cfg"]["dec_local_num"])
-
-    model.load_state_dict(
-        torch.load(pth_path, map_location=f'cuda:{cuda_ids[0]}'))
-
-    model = torch.nn.DataParallel(
-        model,
-        device_ids=cuda_ids,
-        output_device=cuda_ids[0],
-    ).to(device)
-
     affine_func = AffinePatch()
+    akaze = cv2.AKAZE_create()
 
-    model.eval()
     with torch.no_grad():
         for ftitle in tqdm(ftitle_lst):
             img1 = cv2.imread(osp.join(data_dir, f"{ftitle}_1.png"), 0)
             img2 = cv2.imread(osp.join(data_dir, f"{ftitle}_2.png"), 0)
 
-            input1 = ((255.0 - img1) / 255.0)[np.newaxis, np.newaxis, :, :]
-            input2 = ((255.0 - img2) / 255.0)[np.newaxis, np.newaxis, :, :]
+            patch_size1 = img1.shape[0]
+            center = np.array([[patch_size // 2, patch_size // 2]])
 
-            input1 = torch.tensor(input1).float().to(device)
-            input2 = torch.tensor(input2).float().to(device)
+            img1 = localEqualHist(img1)
+            img2 = localEqualHist(img2)
 
-            cla_pred, align_pred = model([input1, input2])
+            kp1, des1 = akaze.detectAndCompute(img1, None)
+            kp2, des2 = akaze.detectAndCompute(img2, None)
 
-            y = cla_pred.squeeze().cpu().numpy()
-            align_pred = align_pred.squeeze().cpu().numpy()
+            y, align_pred = matchDes(kp1, kp2, des1, des2, patch_size, center)
 
             align_pred = norm_pred(align_pred[None, :])
 
