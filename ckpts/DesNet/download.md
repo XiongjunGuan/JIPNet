@@ -1,1 +1,2 @@
-best.pth : The download link will be released after our paper is officially accepted.
+# best.pth
+The download link will be released after our paper is officially accepted.
