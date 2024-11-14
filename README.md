@@ -136,6 +136,7 @@ If you find this repository useful, please give us stars and use the following B
   journal={arXiv preprint arXiv:2405.03959},
   title={Joint Identity Verification and Pose Alignment for Partial Fingerprints}, 
   year={2024},
+}
 ```
 
 <br>
