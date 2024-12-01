@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2024-11-04 15:49:55
+ * @LastEditTime: 2024-12-01 10:55:30
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -44,6 +44,7 @@ Model weights and data will be released gradually after this paper is officially
 <br>
 
 ## News :bell:
+- **[Dec. 1 2024]** inference model is available.
 - **[Nov. 1 2024]** Code is coming.
 
 <br>
@@ -81,11 +82,13 @@ root_path/examples/
 Input paired images (`ftitle_1.png, ftitle_2.png`), output aligned results (`ftitle.png`) and classification probabilities/relative pose vectors (`ftitle.txt`).
 
 
-The test data is available from this [link](https://drive.google.com/drive/folders/17z14S86t9cs89rYL4_WkuJxek8Aaks1q?usp=sharing).
+The test data (part) is available from this [link](https://drive.google.com/drive/folders/17z14S86t9cs89rYL4_WkuJxek8Aaks1q?usp=sharing).
 
 <br>
 
 ## Run
+:star: The inference models are available from this [link](https://drive.google.com/drive/folders/1q9yopPjOFt9c9odCT1o4nheLvwrJaCu7?usp=sharing).
+
 * **test JIPNet**
     ```shell
     python inference.py

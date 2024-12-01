@@ -1,2 +1,2 @@
 # best.pth 
-The download link will be released after our paper is officially accepted.
+Please download the model from the attached link on the readme page and place it in the corresponding folder path.
