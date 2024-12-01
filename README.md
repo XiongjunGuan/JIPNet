@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2024-12-01 10:55:30
+ * @LastEditTime: 2024-12-01 11:03:47
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -44,7 +44,7 @@ Model weights and data will be released gradually after this paper is officially
 <br>
 
 ## News :bell:
-- **[Dec. 1 2024]** inference model is available.
+- **[Dec. 1 2024]** Inference model is available.
 - **[Nov. 1 2024]** Code is coming.
 
 <br>
