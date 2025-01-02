@@ -15,7 +15,7 @@
 </a> 
 
 ### 💬 This repo is the official implementation of:
-- ***arXiv 2024***: [Joint Identity Verification and Pose Alignment for Partial Fingerprints](https://arxiv.org/abs/2405.03959) 
+- ***TIFS 2025***: [Joint Identity Verification and Pose Alignment for Partial Fingerprints](https://arxiv.org/abs/2405.03959) 
 
 [Xiongjun Guan](https://xiongjunguan.github.io/), Zhiyu Pan, Jianjiang Feng, Jie Zhou
 
@@ -134,12 +134,16 @@ The test data (part) is available from this [link](https://drive.google.com/driv
 ## Citation
 If you find this repository useful, please give us stars and use the following BibTeX entry for citation.
 ```
-@article{guan2024joint,
+@ARTICLE{guan2024joint,
   author={Guan, Xiongjun and Pan, Zhiyu and Feng, Jianjiang and Zhou, Jie},
-  journal={arXiv preprint arXiv:2405.03959},
+  journal={IEEE Transactions on Information Forensics and Security}, 
   title={Joint Identity Verification and Pose Alignment for Partial Fingerprints}, 
-  year={2024},
-}
+  year={2025},
+  volume={20},
+  number={},
+  pages={249-263},
+  keywords={Fingerprint recognition;Feature extraction;Pose estimation;Correlation;Fingers;Authentication;Transformers;Skin;Sensors;Prediction algorithms;Fingerprint recognition;partial fingerprint;fingerprint verification;fingerprint pose estimation;transformer},
+  doi={10.1109/TIFS.2024.3516566}}
 ```
 
 <br>
