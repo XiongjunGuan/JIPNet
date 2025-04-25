@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2024-12-01 11:03:47
+ * @LastEditTime: 2025-04-25 16:15:37
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -39,11 +39,13 @@ The structure of **JIPNet** (the name `JIP` stands for **J**oint **I**dentity Ve
 <br>
 
 ## Notice :exclamation:
-Model weights and data will be released gradually after this paper is officially accepted.
+The publicly available weights are only applicable to the testing scenarios in our paper. 
+If you want to achieve better results, please retrain or fine tune in your local dataset.
 
 <br>
 
 ## News :bell:
+- **[Apr. 25 2025]** Train code is coming.
 - **[Dec. 1 2024]** Inference model is available.
 - **[Nov. 1 2024]** Code is coming.
 
@@ -51,12 +53,13 @@ Model weights and data will be released gradually after this paper is officially
   
 ## Requirements
 ```shell
-einops==0.8.0
-numpy==2.1.3
+einops==0.8.1
+numpy==2.2.5
 opencv_contrib_python==4.10.0.84
 opencv_python==4.8.1.78
 PyYAML==6.0.2
-scipy==1.14.1
+scipy==1.15.2
+skimage==0.0
 timm==0.9.12
 torch==2.1.2
 tqdm==4.66.1
@@ -64,7 +67,7 @@ tqdm==4.66.1
 
 <br>
 
-## Data preparation
+## Test Data preparation
 
 The file structure in the example code is as follows:
 ```shell
@@ -85,6 +88,28 @@ Input paired images (`ftitle_1.png, ftitle_2.png`), output aligned results (`fti
 The test data (part) is available from this [link](https://drive.google.com/drive/folders/17z14S86t9cs89rYL4_WkuJxek8Aaks1q?usp=sharing).
 
 <br>
+
+## Train
+If you want to train JIPNet, please first construct the training set and overview file `example.npy` in the form of the following example:
+```
+|-data
+  |-img/...         # images for training
+  |-info/...        # pair info for training
+  |-example.npy   # overview file
+```
+
+Next, you need to adjust the file path, network structure, and training parameters according to your needs:
+```
+./configs/JIPNet.yaml
+```
+
+Finally, set the corresponding configuration path in the training file to train JIPNet !
+```shell
+python train_JIPNet.py
+```
+
+Note that the training code has not been fully organized yet, and there may be some bugs that have not been discovered. Please feel free to discuss with me. :kissing_heart:
+
 
 ## Run
 :star: The inference models are available from this [link](https://drive.google.com/drive/folders/1q9yopPjOFt9c9odCT1o4nheLvwrJaCu7?usp=sharing).
@@ -130,6 +155,9 @@ The test data (part) is available from this [link](https://drive.google.com/driv
     ```
 
 <br>
+
+
+
 
 ## Citation
 If you find this repository useful, please give us stars and use the following BibTeX entry for citation.

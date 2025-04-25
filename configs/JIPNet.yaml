@@ -1,0 +1,48 @@
+# train settings
+train_cfg:
+  # initial config
+  lr: 1.0e-3
+  end_lr: 1.0e-6
+  epochs: 16
+  batch_size: 2 # 128
+  cuda_ids: [2]
+
+  # lr iteration
+  scheduler_type: CosineAnnealingLR
+  optimizer: adamW
+
+  # data augmentation
+
+# traning database
+db_cfg:
+  train_info_path: ./data/example.npy
+  valid_info_path: ./data/example.npy
+
+# save settings
+save_cfg:
+  save_basedir: ./saved/
+  save_title: test # time / test
+
+# model settings
+model_cfg:
+  model: JIPNet
+  input_size: 160
+  img_channel: 1
+  num_classes: 1
+  width: 32
+  enc_blk_nums: [2, 2, 2]
+  dw_expand: 1
+  ffn_expand: 2
+  mid_blk_nums: [4]
+  mid_blk_strides: [1]
+  mid_embed_dims: [264]
+  dec_nhead: [6, 12]
+  dec_local_num: [8, 4]
+  dec_hidden_dim: 384
+  dec_global_num: 0
+
+pretrain_cfg:
+  encoder_pth: 
+
+# loss settings
+loss_cfg:

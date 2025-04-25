@@ -1,0 +1,6 @@
+File for patch_info. from top to left: img_path1/2, info1/2, gt, info from left to right: row col theta.
+/disk3/guanxiongjun/backup_clean/TIFS25_partial_predict/data/img/2_1.png
+/disk3/guanxiongjun/backup_clean/TIFS25_partial_predict/data/img/2_2.png
+417.0000 508.0000 -143.0000
+418.0000 513.0000 94.0000
+1.0
