@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2025-04-25 16:15:37
+ * @LastEditTime: 2025-04-25 16:18:15
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -40,6 +40,7 @@ The structure of **JIPNet** (the name `JIP` stands for **J**oint **I**dentity Ve
 
 ## Notice :exclamation:
 The publicly available weights are only applicable to the testing scenarios in our paper. 
+
 If you want to achieve better results, please retrain or fine tune in your local dataset.
 
 <br>
@@ -67,27 +68,7 @@ tqdm==4.66.1
 
 <br>
 
-## Test Data preparation
 
-The file structure in the example code is as follows:
-```shell
-root_path/examples/
-├── data
-|   ├── 0_1.png
-|   ├── 0_2.png
-|   ├── ......
-├── result
-|   ├── method
-|   |   ├── 0.png
-|   |   ├── 0.txt
-|   |   ├── ......
-```
-Input paired images (`ftitle_1.png, ftitle_2.png`), output aligned results (`ftitle.png`) and classification probabilities/relative pose vectors (`ftitle.txt`).
-
-
-The test data (part) is available from this [link](https://drive.google.com/drive/folders/17z14S86t9cs89rYL4_WkuJxek8Aaks1q?usp=sharing).
-
-<br>
 
 ## Train
 If you want to train JIPNet, please first construct the training set and overview file `example.npy` in the form of the following example:
@@ -110,6 +91,30 @@ python train_JIPNet.py
 
 Note that the training code has not been fully organized yet, and there may be some bugs that have not been discovered. Please feel free to discuss with me. :kissing_heart:
 
+
+<br>
+
+## Test Data preparation
+
+The file structure in the example code is as follows:
+```shell
+root_path/examples/
+├── data
+|   ├── 0_1.png
+|   ├── 0_2.png
+|   ├── ......
+├── result
+|   ├── method
+|   |   ├── 0.png
+|   |   ├── 0.txt
+|   |   ├── ......
+```
+Input paired images (`ftitle_1.png, ftitle_2.png`), output aligned results (`ftitle.png`) and classification probabilities/relative pose vectors (`ftitle.txt`).
+
+
+The test data (part) is available from this [link](https://drive.google.com/drive/folders/17z14S86t9cs89rYL4_WkuJxek8Aaks1q?usp=sharing).
+
+<br>
 
 ## Run
 :star: The inference models are available from this [link](https://drive.google.com/drive/folders/1q9yopPjOFt9c9odCT1o4nheLvwrJaCu7?usp=sharing).
