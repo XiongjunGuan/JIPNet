@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2025-04-28 12:34:15
+ * @LastEditTime: 2025-04-28 12:35:21
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -14,12 +14,7 @@
 
 <br>
 
-<img alt="PyTorch" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&style=for-the-badge&logo=PyTorch&logoColor=white" />
-<img alt="License" height="25" src="https://img.shields.io/badge/License-MIT-yellow" />
-
-
-<a src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red" href="https://arxiv.org/abs/2405.03959" height="25"> 
-   <img height="25" src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red"> 
+<img alt="PyTorch" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&style=for-the-badge&logo=PyTorch&logoColor=white" /> <img alt="License" height="25" src="https://img.shields.io/badge/License-MIT-yellow" /> <a src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red" href="https://arxiv.org/abs/2405.03959" height="25">  <img height="25" src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red"> 
 </a> 
 
 ### 💬 This repo is the official implementation of:
