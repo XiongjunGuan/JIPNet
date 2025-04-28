@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2025-04-28 12:35:21
+ * @LastEditTime: 2025-04-28 12:39:38
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -92,14 +92,15 @@ tqdm==4.66.1
 python train_JIPNet.py
 ```
 
-:point_up: The pretrained encoder is uploaded at `./JIPNet/encoder_bath.pth` in this [link](https://drive.google.com/drive/folders/1q9yopPjOFt9c9odCT1o4nheLvwrJaCu7?usp=sharing).
+:triangular_flag_on_post: The pretrained encoder is uploaded at `./JIPNet/encoder_bath.pth` in this [link](https://drive.google.com/drive/folders/1q9yopPjOFt9c9odCT1o4nheLvwrJaCu7?usp=sharing).
 
 If you are interested in this part, you can refer to our other repository for training fingerprint enhancement networks.
 https://github.com/XiongjunGuan/FpEnhancer
+
 Note that the network of above repository‌ has been adjusted, and its weight cannot be directly applied to JIPNet.
 
 
-Note that the training code has not been fully organized yet, and there may be some bugs that have not been discovered. Please feel free to discuss with me. :kissing_heart:
+:sparkles: At present, the training code has not been fully organized yet, and there may be some bugs that have not been discovered. Please feel free to discuss with me. :kissing_heart:
 
 
 <br>
