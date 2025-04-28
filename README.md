@@ -4,14 +4,22 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2025-04-25 16:18:15
+ * @LastEditTime: 2025-04-28 12:34:15
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
 # JIPNet
+
+<h5 align="left"> If our project helps you, please give us a star ⭐ on GitHub to support us. 🙏🙏 </h2>
+
+<br>
+
 <img alt="PyTorch" height="25" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&style=for-the-badge&logo=PyTorch&logoColor=white" />
-<a src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red" href="https://arxiv.org/abs/2405.03959"> 
-   <img src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red"> 
+<img alt="License" height="25" src="https://img.shields.io/badge/License-MIT-yellow" />
+
+
+<a src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red" href="https://arxiv.org/abs/2405.03959" height="25"> 
+   <img height="25" src="https://img.shields.io/badge/cs.CV-2405.03959-b31b1b?logo=arxiv&logoColor=red"> 
 </a> 
 
 ### 💬 This repo is the official implementation of:
@@ -71,7 +79,7 @@ tqdm==4.66.1
 
 
 ## Train
-If you want to train JIPNet, please first construct the training set and overview file `example.npy` in the form of the following example:
+:point_up: If you want to train JIPNet, please first construct the training set and overview file `example.npy` in the form of the following example:
 ```
 |-data
   |-img/...         # images for training
@@ -79,15 +87,22 @@ If you want to train JIPNet, please first construct the training set and overvie
   |-example.npy   # overview file
 ```
 
-Next, you need to adjust the file path, network structure, and training parameters according to your needs:
+:point_up: Next, you need to adjust the file path, network structure, and training parameters according to your needs:
 ```
 ./configs/JIPNet.yaml
 ```
 
-Finally, set the corresponding configuration path in the training file to train JIPNet !
+:point_up: Finally, set the corresponding configuration path in the training file to train JIPNet !
 ```shell
 python train_JIPNet.py
 ```
+
+:point_up: The pretrained encoder is uploaded at `./JIPNet/encoder_bath.pth` in this [link](https://drive.google.com/drive/folders/1q9yopPjOFt9c9odCT1o4nheLvwrJaCu7?usp=sharing).
+
+If you are interested in this part, you can refer to our other repository for training fingerprint enhancement networks.
+https://github.com/XiongjunGuan/FpEnhancer
+Note that the network of above repository‌ has been adjusted, and its weight cannot be directly applied to JIPNet.
+
 
 Note that the training code has not been fully organized yet, and there may be some bugs that have not been discovered. Please feel free to discuss with me. :kissing_heart:
 
