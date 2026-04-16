@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2026-04-16 11:49:58
+ * @LastEditTime: 2026-04-16 12:01:48
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -132,11 +132,11 @@ python affine_pairs.py
 
 # Assuming you already have aligned data (genuine matches).
 # Perfect alignment is not required; approximate alignment based on relative finger positions is sufficient.
-python exrtact_mask.py 
+python extract_mask.py 
 
 # !! Each image must have at least one true match and one false match.
 # Random cropping parameters can be adjusted in the code.
-python generate_path.py
+python generate_patch.py
 
 ```
 
