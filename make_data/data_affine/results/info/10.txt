@@ -1,0 +1,6 @@
+File for patch_info. from top to left: img_path1/2, info1/2, gt, info from left to right: row col theta.
+./data_affine/results/img/10_1.png
+./data_affine/results/img/10_2.png
+185.0000 307.0000 169.0000
+257.0000 333.0000 -88.0000
+1

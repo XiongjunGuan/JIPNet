@@ -4,7 +4,7 @@
  * @Date: 2024-05-24 10:59:39
  * @version: 0.0.1
  * @LastEditors: Xiongjun Guan
- * @LastEditTime: 2025-04-29 14:51:04
+ * @LastEditTime: 2026-04-16 11:49:58
  * 
  * Copyright (C) 2024 by Xiongjun Guan, Tsinghua University. All rights reserved.
 -->
@@ -111,10 +111,40 @@ Note that the network of above repository‌ has been adjusted, and its weight c
 
 :sparkles: At present, the training code has not been fully organized yet, and there may be some bugs that have not been discovered. Please feel free to discuss with me. :kissing_heart:
 
+<br>
+
+## Train Data Generation
+
+:point_up: First, prepare your data following the `FVC` naming format:
+`{FINGER_ID}_{IMPRESSION_ID}`
+
+:point_up: Next, extract the required features, such as binary images and minutiae.
+(This step is optional—they are mainly used for rigid registration and mask extraction. You may use alternative methods if preferred.)
+
+:point_up: Finally, run the following commands:
+
+```shell
+cd ./make_data
+
+# We use VeriFinger for rigid registration.
+# This script will not run successfully due to licensing restrictions, and the source code cannot be released. It is provided for reference only.
+python affine_pairs.py 
+
+# Assuming you already have aligned data (genuine matches).
+# Perfect alignment is not required; approximate alignment based on relative finger positions is sufficient.
+python exrtact_mask.py 
+
+# !! Each image must have at least one true match and one false match.
+# Random cropping parameters can be adjusted in the code.
+python generate_path.py
+
+```
+
+
 
 <br>
 
-## Test Data preparation
+## Test Data Preparation
 
 The file structure in the example code is as follows:
 ```shell
